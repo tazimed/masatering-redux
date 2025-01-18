@@ -34,10 +34,20 @@ const storeCake = createtore(reducerCake)
 // acces to the state via getState()
 console.log("inital state ",storeCake.getState())
 
+//3rd responsibility of store
+// dispatch the state via subscribe(()=>{})
+
+storeCake.subscribe(()=>{console.log("update state",storeCake.getState())})
 
 //3rd responsibility of store
-// dispatch the state via dispatch(()=>{})
+// dispatch the state via dispatch(function())
 
-storeCake.dispatch(()=>{console.log("updated state",storeCake.getState())})
+storeCake.dispatch(buycake());
+storeCake.dispatch(buycake());
+storeCake.dispatch(buycake());
+
+
+
+
 
 
