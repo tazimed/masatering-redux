@@ -5,17 +5,17 @@ console.log("from index.js");
 const BUY_CAKE = "BUY_CAKE";
 const RESTORE_CAKE = "RESTORE_CAKE";
 
-function buycake() {
+function buycake(qty = 1) {
     return {
         type: BUY_CAKE,
-        quantity: 1,
+        payload: qty,
     };
 }
 
 function restoreCakes(Qty = 1){
     return{
         type:RESTORE_CAKE ,
-        quantity : Qty
+        payload : Qty
     }
     
 }
@@ -29,12 +29,12 @@ function reducerCake(state = initialState, action) {
         case BUY_CAKE:
             return {
                 ...state,
-                nbrOfCakes: state.nbrOfCakes - 1, 
+                nbrOfCakes: state.nbrOfCakes - action.payload, 
             };
         case RESTORE_CAKE :
             return{
                 ...state,
-                nbrOfCakes:state.nbrOfCakes+action.quantity
+                nbrOfCakes:state.nbrOfCakes+action.payload
             }
         default:
             return state;
@@ -56,9 +56,9 @@ const unsubscribe = storeCake.subscribe(()=>{console.log("update state",storeCak
 //3rd responsibility of store
 // dispatch the state via dispatch(function())
 
-storeCake.dispatch(buycake());
-storeCake.dispatch(buycake());
-storeCake.dispatch(buycake());
+// storeCake.dispatch(buycake());
+// storeCake.dispatch(buycake());
+storeCake.dispatch(buycake(3));
 
 //restoring 1 (the default value) cake 
 storeCake.dispatch(restoreCakes());
